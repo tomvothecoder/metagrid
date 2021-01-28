@@ -5,6 +5,7 @@ import humps from 'humps';
 import queryString from 'query-string';
 import {
   RawUserCart,
+  RawUserSavedSubscriptions,
   RawUserSearchQuery,
   UserCart,
   UserSearchQueries,
@@ -129,6 +130,36 @@ export const fetchUserCart = async (
     })
     .catch((error: ResponseError) => {
       throw new Error(errorMsgBasedOnHTTPStatusCode(error, apiRoutes.userCart));
+    });
+};
+
+/**
+ * HTTP Request Method: GET
+ * HTTP Response Code: 200 OK
+ */
+export const fetchUserSavedSubscriptions = async (
+  pk: string,
+  accessToken: string
+): Promise<{
+  results: RawUserSavedSubscriptions;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}> => {
+  return axios
+    .get(`${apiRoutes.userSavedSubscriptions.path.replace(':pk', pk)}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((res) => {
+      return res.data as Promise<{
+        results: RawUserSavedSubscriptions;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [key: string]: any;
+      }>;
+    })
+    .catch((error: ResponseError) => {
+      throw new Error(errorMsgBasedOnHTTPStatusCode(error, apiRoutes.userSavedSubscriptions));
     });
 };
 

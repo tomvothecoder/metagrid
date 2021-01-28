@@ -13,6 +13,7 @@ import ReactGA from 'react-ga';
 import { hotjar } from 'react-hotjar';
 import { Link, Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { defaultSubscriptions } from 'esgf-subscriptions';
 import {
   addUserSearchQuery,
   deleteUserSearchQuery,
@@ -35,6 +36,7 @@ import NavBar from '../NavBar';
 import NodeStatus from '../NodeStatus';
 import NodeSummary from '../NodeStatus/NodeSummary';
 import Search from '../Search';
+import { Subscriptions } from '../Subscriptions';
 import {
   ActiveSearchQuery,
   RawSearchResult,
@@ -523,6 +525,22 @@ const App: React.FC = () => {
                     />
                   </>
                 )}
+              />
+              <Route
+                path="/subscribe"
+                render={() => (
+                  <>
+                    <Breadcrumb>
+                      <Breadcrumb.Item>
+                        <HomeOutlined /> Home
+                      </Breadcrumb.Item>
+                      <Breadcrumb.Item>Subscriptions</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <Subscriptions
+                      post_url=""
+                      saved_subs={defaultSubscriptions}
+                    ></Subscriptions>
+                  </>)}
               />
               <Route
                 render={() => (

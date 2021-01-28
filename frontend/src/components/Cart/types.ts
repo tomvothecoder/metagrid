@@ -1,3 +1,4 @@
+import { Subscription } from 'esgf-subscriptions';
 import { ActiveFacets, RawProject } from '../Facets/types';
 import {
   RawSearchResults,
@@ -7,6 +8,7 @@ import {
 } from '../Search/types';
 
 export type UserCart = RawSearchResults;
+
 export type RawUserCart = {
   items: RawSearchResults;
 };
@@ -44,3 +46,7 @@ export type UserSearchQuery = {
 };
 
 export type UserSearchQueries = Array<UserSearchQuery>;
+
+export type RawUserSavedSubscriptions = {
+  subscriptions: Subscription[];
+}
